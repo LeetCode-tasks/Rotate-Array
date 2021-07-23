@@ -22,3 +22,28 @@ rotate 3 steps to the right: `[5,6,7,1,2,3,4]`
 `-2^31 <= nums[i] <= 2^31 - 1`
 
 `0 <= k <= 10^5`
+
+
+## Solution in JavaScript:
+
+```
+var rotate = function(nums, k) {
+        
+    k = k % nums.length;
+    let count = 0;
+    for (let start = 0; count < nums.length; start++) {
+        let current = start;
+        let prev = nums[start];
+        do {
+            let next = (current + k) % nums.length;
+            let temp = nums[next];
+            nums[next] = prev;
+            prev = temp;
+            current = next;
+            count++;
+        } while (start != current)
+    }
+    
+    return nums;
+};
+```
